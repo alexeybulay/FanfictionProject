@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Этот файл используется процессом публикации или упаковки вашего веб-проекта. Можно настроить поведение этого процесса,
+изменив этот файл MSBuild. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZwclYxP7IECqYIUcgZXBhAAAAAACAAAAAAAQZgAAAAEAACAAAAC1jnsRnrR/f963uoLUES9/xgJRkvkzpBjKktNp9s9PcAAAAAAOgAAAAAIAACAAAACgjPOF0XhcXHveac0OHlfeV3zO3NOLdIDMtfvLYMm+2iAAAAAlDWjYm+3vOUG+ui91wMHGIAaXkTF5b+6cW95QVzCQTUAAAAAWfGTTZ4vNDH1wlu7dTlo7uoFPny+Wy44jEdsCrEUaRUpnApA7dZJ6ns2YCnUXSTEfslPfdr+Tj8fH6+tztbaL</EncryptedPassword>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="WebApp3ContextConnection">
+      <Value>Server=%28local%29\SQLEXPRESS%3bDatabase=MainTest%3bTrusted_Connection=True%3bMultipleActiveResultSets=true</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="WebApp3.Areas.Identity.DbContext.ApplicationUserDbContext">
+      <Value>
+      </Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

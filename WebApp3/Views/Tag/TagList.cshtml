@@ -1,0 +1,78 @@
+﻿@model WebApp3.ViewModels.FanficTagViewModel
+@{
+    ViewData["Title"] = "TagList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a asp-action="CreateTag">Create New</a>
+</p>
+<div class="tag-list">
+    <div class="top-header">
+        <h2>Теги</h2>
+    </div>
+    <form method="get" asp-controller="Tag" asp-action="TagList">
+        <div class="input-group">
+            <input class="form-control" name="SearchTags">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+    <div class="col-sm-12">
+        <div class="row tags-row">
+            @foreach (var tags in Model.Tags)
+            {
+                <div class="col-sm-4 about">
+                    <div class="tag-name">
+                        <form method="get">
+                            <a asp-controller="Fanfic" asp-action="FanficList" asp-route-id="@tags.TagId">@tags.TagTitle</a>
+                        </form>
+                        <sup>x @tags.FanficsTags.Select(ps => ps.Fanfic.FanficId).Count()</sup>
+                    </div>
+                    <div class="tag-description">
+                        @tags.TagDescription
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<style>
+   *{
+       color: white;
+       }
+   .top-header{
+       border-bottom: 1px solid #eee;
+       }
+    .about {
+        border-bottom: 1px dotted #eee;
+    }
+   .tag-list .tags-row{
+       padding-top: 10px;
+       padding-bottom: 10px;
+       
+       }
+   .tag-name{
+       margin-bottom: 5px;
+       color: #888;
+       font-size: 14px;
+       }
+   a.tag{
+       background-color: lightblue;
+       padding: 5px 7px;
+   }
+   a.tag:hover{
+       background-color: rgb(141, 182, 195);
+       text-decoration: none;
+   }
+   .tag-description{
+       color: #888;
+       }
+   .about{
+       padding: 15px;
+       }
+   .tag-name{
+       margin-bottom: 15px;
+       }
+   </style>

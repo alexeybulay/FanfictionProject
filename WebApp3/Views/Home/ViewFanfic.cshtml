@@ -1,0 +1,14 @@
+﻿@model WebApp3.ViewModels.ApplicationUserViewModel;
+@{
+}
+<form asp-action="ViewFanfic" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="ProfileImage" class="control-label"></label>
+        <input asp-for="ProfileImage" class="form-control"/>
+        <span asp-validation-for="ProfileImage" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Регистрация</button>
+    </div>
+</form>
+

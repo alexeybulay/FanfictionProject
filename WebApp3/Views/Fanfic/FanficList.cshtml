@@ -1,0 +1,133 @@
+﻿@model WebApp3.ViewModels.FanficTagViewModel
+
+@{
+    ViewData["Title"] = "FanficList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Работы автора</h1>
+        <form method="get" asp-controller="Fanfic" asp-action="FanficList">
+            <div class="input-group">
+                <input class="form-control" name="SearchUser">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+        <article class="all-browsers">
+            @foreach (var fanfic in Model.FanficsTags)
+            {
+                <article class="browser">
+                    <div class="content">
+                        <div class="user-like-comment">
+                            <div class="userpublish">
+                                <i class="fa fa-user" aria-hidden="true"><a asp-controller="Home" asp-action="MyInformation"> @fanfic.Fanfic.ApplicationUser.Email</a></i>
+                            </div>
+                            <div class="rating">
+                                <i class="fa fa-star" aria-hidden="true"><b style="color:gold"> 10 </b></i>
+                            </div>
+                            <div class="likes">
+                                <i class="fa fa-thumbs-up" aria-hidden="true"><b style="color:yellowgreen"> 25 </b></i>
+                            </div>
+                            <div class="comment">
+                                <i class="fa fa-comments" aria-hidden="true"><b> 28 </b></i>
+                            </div>
+                        </div>
+                        <div class="namefanfic">
+                            <i class="fa fa-book" aria-hidden="true"><a asp-controller="Home" asp-action="MyInformation"> @fanfic.Fanfic.NameFanfic</a></i>
+                            </div>
+                        <div class="desciption">
+                            <i class="fa fa-pencil" aria-hidden="true"><b> Описание: </b> @fanfic.Fanfic.Description</i>
+                        </div>
+                        <div class="tags">
+                            <form method="get">
+                            <i class="fa fa-tags" aria-hidden="true"><b> Метки: </b><a asp-controller="Fanfic" asp-action="FanficList" asp-route-id="@fanfic.TagId"> @string.Join(", ", fanfic.Fanfic.FanficsTags.Select(ps => ps.Tag.TagTitle)) </a></i>
+                       </form>
+                            </div>
+                        <div class="timepublish">
+                            <i class="fa fa-calendar" aria-hidden="true"><b> Дата публикации: </b> @fanfic.Fanfic.DateTimePublish</i>
+                        </div>
+                    </div>
+                </article>
+            }
+
+        </article>
+    </div>
+</div>
+
+<style>
+    * {
+        color: #d8d4ca;
+    }
+    div .user-like-comment{
+        display: inline-flex;
+    }
+    div .content{
+        margin: 10px;
+    }
+    div .userpublish, .namefanfic, .name-user, .desciption, .rating, .likes, .comment, .tags, .timepublish{
+        font-size: 21px;
+    }
+    div .desciption{
+        display: block;
+    }
+    div .rating i{
+        color: gold;
+        padding-left: 15px;
+    }
+    div .likes i{
+        color: yellowgreen;
+        padding-left: 10px;
+    }
+    div .comment i {
+        padding-left: 10px;
+    }
+          
+    .all-browsers {
+
+        margin: 0;
+        padding: 5px;
+        background-color: transparent;
+    }
+
+    .all-browsers > h1, .browser {
+        margin: 10px;
+        padding: 5px;
+    }
+
+    .browser {
+        background: transparent;
+        color: white;
+        border: 1px solid #d8d4ca;
+        border-left: 12px solid #f8084c;
+        font-size: 18px;
+    }
+    article a, a:hover {
+        color: #d8d4ca;
+        text-decoration: underline;
+    }
+    
+
+    .browser > h2, p {
+        margin: 4px;
+        font-size: 90%;
+
+    }
+    .word {
+                
+    }
+    a.tag{
+        background-color: lightblue;
+        padding: 5px 7px;
+    }
+    a.tag:hover{
+        background-color: rgb(141, 182, 195);
+        text-decoration: none;
+    }
+</style>
+
+<script src="https://use.fontawesome.com/e41c36a5bb.js"></script>

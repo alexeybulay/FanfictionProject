@@ -1,0 +1,74 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApp3</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/site.css" />
+    <link rel="stylesheet" href="~/css/site3.css" />
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand  text-white" asp-area="" asp-controller="Home" asp-action="Index">Fanfiction</a>
+            <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="UsersList">Список пользователей</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="Fanfic" asp-action="CreateFanfic">Добавить фанфик</a>
+                    </li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link  text-white" asp-area="" asp-controller="Home" asp-action="Login">Войти</a>
+                        </li>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/images/3e076cd4-4411-409c-8353-5684fce5aa12-fonstola.ru-173068 (1).jpg" class="rounded-circle" width="40" height="40" asp-append-version="true"/> @User.Identity.Name</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item  text-white" asp-area="" asp-controller="Home" asp-action="MyInformation">Мой аккаунт</a>
+                                <a class="dropdown-item  text-white" asp-area="" asp-controller="Fanfic" asp-action="FanficList">Мои фанфики</a>
+                                <a class="dropdown-item  text-white" asp-area="" asp-controller="Home" asp-action="Logout">Настройки</a>
+                                <a class="dropdown-item  text-white" asp-area="" asp-controller="Home" asp-action="Logout">Выйти</a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2020 - Fanfiction - <a asp-area="" asp-controller="Home" asp-action="Privacy">Политика конфиденциальности</a>
+    </div>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@RenderSection("Scripts", required: false)
+</body>
+</html>
+

@@ -1,0 +1,112 @@
+﻿@model IEnumerable<WebApp3.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Список пользователей";
+}
+@*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/userliststyle.css" />*@
+
+<form method="get" asp-controller="Home" asp-action="UsersList">
+    <div class="input-group">
+        <input class="form-control" name="SearchUser">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+<div class="col-sm-12">
+    <table class="users-list">
+    
+        @foreach (var user in Model)
+        {
+        <tr>
+            <td class="author-avatar">
+                <div class="avatar-holder">
+                    <div class="avatar easy-100">
+                        <a href="#">
+                            <img src="~/Images/@user.ImageUrl" asp-append-version="true" width="100" height="100" alt=""/>
+                        </a>
+                    </div>
+                </div>
+            </td>
+
+            <td class="about-author" style="padding-left: 10px;">
+                <a class="name-user" href="#">
+                    @user.Email
+                </a>
+                @if (user.IsActive == true)
+                {
+                    <div id="online">
+                        <b>В сети</b>
+                    </div>
+                }
+                @if (user.IsActive == false)
+                {
+                    <div id="offline">
+                        <b>Не в сети</b>
+                    </div>
+                }
+                <div class="subscribe">
+                    @if (user.Fanfics.Count == 0 || user.Fanfics == null)
+                    {<div class="subscribe">
+                         Фанфики отсутствуют
+                     </div>
+                    }
+                    Фанфиков:
+                    <b> @user.Fanfics.Count</b>
+                </div>
+</td>
+
+        </tr>
+        }
+      
+    </table>
+</div>
+<style>
+    .subscribe{
+        color: white;
+    }
+    #online{
+        color: greenyellow;
+    }
+    #offline{
+        color: red;
+    }
+   .name-user[href]{
+       font-size: 100%;
+        color: #d8d4ca;
+        text-decoration: underline;
+    }
+    @*@media (min-width: 768px) .col-sm-16 {
+        width: 100%;
+    }*@
+   .author-avatar{
+        display: block;
+    }
+   .users-list tr{
+       padding-bottom: 50px;
+       display: inherit;
+   }
+    .users-list .author-avatar{
+        width: 130px;
+        text-align: right;
+    }
+    .users-list{
+        background-color: transparent;    
+    }
+    .avatar-holder{
+        display: inline-block;    
+    }
+    .avatar {
+        border-radius: 100%;
+        border: 2px solid #f8084c;
+        overflow: hidden;
+    }
+    .easy-100{
+
+        margin: 15px;
+    }
+   .avatar img{
+       margin: auto;
+       width: 100%;
+     
+   }
+</style>
